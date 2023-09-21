@@ -20,7 +20,7 @@ const servicos = [
         nome: "Vacina Antirrábica",
         preco: 99.9,
         descricao: "Uma dose da vacina antirrábica. Seu gato precisa de uma."
-    },
+    }
 ]
 
 export default function Servicos() {
@@ -42,4 +42,3 @@ export default function Servicos() {
         </SafeAreaView>
     )
 }
-
