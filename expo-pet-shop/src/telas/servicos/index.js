@@ -38,6 +38,7 @@ export default function Servicos() {
                 }}
                 //garante que cada item tenha sua key
                 keyExtractor={({ id }) => String(id)}
+                removeClippedSubviews={false}
             />
         </SafeAreaView>
     )
