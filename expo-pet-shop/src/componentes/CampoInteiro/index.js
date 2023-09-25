@@ -2,7 +2,8 @@ import React from 'react';
 import { TextInput, Button } from 'react-native';
 import estilosPadrao from './estilos.js';
 
-export default function CampoInteiro({ value, estilos, atualizarQuantidade }) {
+export default function CampoInteiro({ value, estilos, acao}) {
+
     const atualiza = (novoValor, acaoRetorno) => {
         const verificaInteiro = novoValor.match(/^[0-9]*$/);
         if (!verificaInteiro) return;
@@ -19,11 +20,11 @@ export default function CampoInteiro({ value, estilos, atualizarQuantidade }) {
             style={[estilosPadrao.campo, estilos]}
             keyboardType='number-pad'
             selectTextOnFocus
-            onChangeText={(novoValor) => {
-
-                if (novoValor[novoValor.length - 1] !== "," && novoValor[novoValor.length - 1] !== ".")
-                    atualizarQuantidade(novoValor);
-            }}
+            onChangeText={
+                (novoValor) => { 
+                    atualiza(novoValor, acao);
+                }
+            }
             value={numeroEmTexto}
         />
     </>;
