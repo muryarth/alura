@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, SafeAreaView, StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
+import { SafeAreaView, StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
 import estilosGlobal from '../../estilos';
 
 export default function TelaPadrao({ children }) {

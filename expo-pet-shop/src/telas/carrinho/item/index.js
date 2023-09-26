@@ -11,13 +11,22 @@ const returnLocaleFormattedCurrency = (value) => {
 }
 
 // "quantidade: quantidadeInicial" nesse trecho, o parâmetro está sendo renomeado
-export default function Item({ nome, preco, descricao, quantidade: quantidadeInicial }) {
+export default function Item({ atualizarValorTotal, id, nome, preco, descricao, quantidade: quantidadeInicial }) {
     const [quantidade, setQuantidade] = useState(quantidadeInicial);
     const [total, setTotal] = useState(preco * quantidadeInicial);
 
     const atualizaQuantidadeTotal = (novaQuantidade) => {
         setQuantidade(novaQuantidade);
         calculaTotal(novaQuantidade);
+        atualizarValorTotal(
+            {
+                id: id,
+                nome: nome,
+                preco: preco,
+                descricao: descricao,
+                quantidade: novaQuantidade
+            }
+        );
     }
 
     const calculaTotal = (novaQuantidade) => {

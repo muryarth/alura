@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 import Item from "./item";
 import TelaPadrao from "../../componentes/TelaPadrao";
+import StatusCarrinho from '../../componentes/StatusCarrinho';
 
-const servicos = [
+let servicos = [
     {
         id: 1,
         nome: "Banho",
@@ -25,21 +26,44 @@ const servicos = [
         descricao: "Uma dose da vacina antirrábica. Seu gato precisa de uma.",
         quantidade: 1
     }
-]
+];
+
+const calcularTotal = (servicos) => {
+    const total = servicos.reduce(
+        (soma, { preco, quantidade }) => soma + (preco * quantidade), 0
+    );
+
+    return total;
+};
 
 export default function Carrinho() {
+    const [valorTotal, setValorTotal] = useState(calcularTotal(servicos));
+
+    const atualizarValorTotal = (item) => {
+        servicos = servicos.map(servico => {
+            if (servico.id == item.id) {
+                return item;
+            }
+            return servico;
+        });
+        setValorTotal(calcularTotal(servicos));
+    }
+
     return (
-        <TelaPadrao>
-            <FlatList
-                data={servicos}
-                //desestruturando
-                renderItem={({ item }) => {
-                    return <Item {...item} />;
-                }}
-                //garante que cada item tenha sua key
-                keyExtractor={({ id }) => String(id)}
-                removeClippedSubviews={false}
-            />
-        </TelaPadrao>
+        <>
+            <StatusCarrinho total={valorTotal} />
+            <TelaPadrao>
+                <FlatList
+                    data={servicos}
+                    //desestruturando
+                    renderItem={({ item }) => {
+                        return <Item atualizarValorTotal={atualizarValorTotal} {...item} />;
+                    }}
+                    //garante que cada item tenha sua key
+                    keyExtractor={({ id }) => String(id)}
+                    removeClippedSubviews={false}
+                />
+            </TelaPadrao>
+        </>
     )
 }
