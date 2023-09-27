@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+
 import estilos from './estilos';
 import Botao from '../Botao';
+
 import { returnLocaleFormattedCurrency } from '../../services';
 
 export default function StatusCarrinho({ total }) {

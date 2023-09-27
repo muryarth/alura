@@ -6,7 +6,7 @@ export default function TelaPadrao({ children }) {
     return <SafeAreaView style={estilosGlobal.preencher}>
         <StatusBar />
         <KeyboardAvoidingView
-            behavior={Platform.OS == "ios" ? "padding" : "padding"}
+            behavior={Platform.OS == "ios" ? "padding" : "position"}
             style={estilosGlobal.preencher}
         >
             {children}
