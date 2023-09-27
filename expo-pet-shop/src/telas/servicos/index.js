@@ -1,8 +1,6 @@
 import React from 'react';
-import { FlatList, SafeAreaView, StatusBar, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { FlatList } from 'react-native';
 import Item from "./item";
-import estilosGlobal from "../../estilos";
-import TelaPadrao from "../../componentes/TelaPadrao";
 
 const servicos = [
     {
@@ -26,16 +24,18 @@ const servicos = [
 ]
 
 export default function Servicos() {
-    return <TelaPadrao>
-        <FlatList
-            data={servicos}
-            //desestruturando
-            renderItem={({ item }) => {
-                return <Item {...item} />;
-            }}
-            //garante que cada item tenha sua key
-            keyExtractor={({ id }) => String(id)}
-            removeClippedSubviews={false}
-        />
-    </TelaPadrao>
+    return (
+        <>
+            <FlatList
+                data={servicos}
+                //desestruturando
+                renderItem={({ item }) => {
+                    return <Item {...item} />;
+                }}
+                //garante que cada item tenha sua key
+                keyExtractor={({ id }) => String(id)}
+                removeClippedSubviews={false}
+            />
+        </>
+    )
 }

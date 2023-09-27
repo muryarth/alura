@@ -52,18 +52,16 @@ export default function Carrinho() {
     return (
         <>
             <StatusCarrinho total={valorTotal} />
-            <TelaPadrao>
-                <FlatList
-                    data={servicos}
-                    //desestruturando
-                    renderItem={({ item }) => {
-                        return <Item atualizarValorTotal={atualizarValorTotal} {...item} />;
-                    }}
-                    //garante que cada item tenha sua key
-                    keyExtractor={({ id }) => String(id)}
-                    removeClippedSubviews={false}
-                />
-            </TelaPadrao>
+            <FlatList
+                data={servicos}
+                //desestruturando
+                renderItem={({ item }) => {
+                    return <Item atualizarValorTotal={atualizarValorTotal} {...item} />;
+                }}
+                //garante que cada item tenha sua key
+                keyExtractor={({ id }) => String(id)}
+                removeClippedSubviews={false}
+            />
         </>
     )
 }
